@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfrldq0f6rnfc"]
+
+[ext_resource type="Script" path="res://game/game.gd" id="1_1xsac"]
+[ext_resource type="PackedScene" uid="uid://b2xa8k3x5rjoi" path="res://game/hand/hand.tscn" id="1_u1owk"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1xsac")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.138715, 0.104082, 0.150402, 1)
+
+[node name="HandArea" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(300, 600)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.164706)
+
+[node name="Hand" parent="." instance=ExtResource("1_u1owk")]
+custom_minimum_size = Vector2(300, 600)
+layout_mode = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 119.0
+offset_top = -171.0
+offset_right = 209.0
+offset_bottom = -140.0
+grow_vertical = 0
+text = "Draw Card"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -239.0
+offset_top = -160.0
+offset_right = -132.0
+offset_bottom = -129.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Discard Card"

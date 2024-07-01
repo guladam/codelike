@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1uore5l6m0pb"]
+
+[ext_resource type="Script" path="res://game/card/card.gd" id="1_sfu0b"]
+[ext_resource type="Script" path="res://game/card/card_state_machine.gd" id="2_qi14k"]
+[ext_resource type="Script" path="res://game/card/card_base_state.gd" id="3_522le"]
+[ext_resource type="Script" path="res://game/card/card_clicked_state.gd" id="4_l2ga2"]
+[ext_resource type="Script" path="res://game/card/card_dragging_state.gd" id="5_oamsg"]
+[ext_resource type="Script" path="res://game/card/card_released_state.gd" id="6_jv811"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he5so"]
+bg_color = Color(0.378081, 0.358405, 0.305584, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.215686)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s35c2"]
+font_size = 32
+shadow_color = Color(0, 0, 0, 0.6)
+
+[node name="Card" type="Panel"]
+custom_minimum_size = Vector2(250, 80)
+offset_right = 250.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_he5so")
+script = ExtResource("1_sfu0b")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -11.5
+offset_right = 25.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Card 1"
+label_settings = SubResource("LabelSettings_s35c2")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_qi14k")
+initial_state = NodePath("BaseState")
+
+[node name="BaseState" type="Node" parent="StateMachine"]
+script = ExtResource("3_522le")
+
+[node name="ClickedState" type="Node" parent="StateMachine"]
+script = ExtResource("4_l2ga2")
+state = 1
+
+[node name="DraggingState" type="Node" parent="StateMachine"]
+script = ExtResource("5_oamsg")
+state = 2
+
+[node name="ReleasedState" type="Node" parent="StateMachine"]
+script = ExtResource("6_jv811")
+state = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
