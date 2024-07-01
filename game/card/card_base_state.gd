@@ -18,7 +18,7 @@ func on_gui_input(event: InputEvent) -> void:
 
 func on_mouse_entered() -> void:
 	mouse_over_card = true
-	card.z_index = 99
+	card.z_index = 9
 
 
 func on_mouse_exited() -> void:

@@ -6,7 +6,10 @@ var minimum_drag_time_elapsed := false
 
 
 func enter() -> void:
+	card.z_index = 10
 	minimum_drag_time_elapsed = false
+	card.dragging_started.emit(card)
+	
 	var threshold_timer := get_tree().create_timer(DRAG_MINIMUM_THRESHOLD, false)
 	threshold_timer.timeout.connect(func(): minimum_drag_time_elapsed = true)
 

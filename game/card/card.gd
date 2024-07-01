@@ -1,6 +1,9 @@
 class_name Card
 extends Panel
 
+signal dragging_started(card: Card)
+signal released(card: Card)
+
 static var cards_selected := 0
 
 @onready var selected := false
