@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bron2iry0k8at"]
+
+[ext_resource type="Shader" path="res://shared_assets/2d_perspective_shader.gdshader" id="1_a4grs"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_a4grs")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 8.55e-06
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0

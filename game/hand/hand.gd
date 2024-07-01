@@ -69,7 +69,7 @@ func _update_cards_dragging(card_index: int, shadow_index: int) -> void:
 
 
 func _get_dragging_card_new_index() -> int:
-	var card_y_pos := int(dragging_card.position.y - y_offset - position.y) + int(Y_SIZE / 2)
+	var card_y_pos := int(dragging_card.position.y - y_offset - position.y) + Y_SIZE / 2
 	var dist := all_cards_size / get_child_count()
 	return clampi(int(card_y_pos / dist), 0, get_child_count()-1)
 
