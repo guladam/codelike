@@ -68,12 +68,9 @@ func _update_cards_dragging(card_index: int, shadow_index: int) -> void:
 	_update_cards()
 
 
-func _get_dragging_card_new_index(debug: bool = false) -> int:
-	var card_y_pos := int(dragging_card.position.y - y_offset - position.y)
+func _get_dragging_card_new_index() -> int:
+	var card_y_pos := int(dragging_card.position.y - y_offset - position.y) + int(Y_SIZE / 2)
 	var dist := all_cards_size / get_child_count()
-	if debug:
-		printt(card_y_pos, dist, clampi(int(card_y_pos / dist), 0, get_child_count()-1))
-	
 	return clampi(int(card_y_pos / dist), 0, get_child_count()-1)
 
 
@@ -90,7 +87,6 @@ func _on_card_dragging_started(card: Card) -> void:
 
 func _on_card_released(_card: Card) -> void:
 	get_tree().get_first_node_in_group("card_placeholders").queue_free()
-	_get_dragging_card_new_index(true)
 	final_new_index = temporary_index
 
 
