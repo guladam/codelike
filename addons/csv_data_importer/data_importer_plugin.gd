@@ -1,6 +1,7 @@
 extends EditorInspectorPlugin
 
 var InstructionEditor = preload("res://addons/csv_data_importer/instruction_editor.gd")
+var GoalEditor = preload("res://addons/csv_data_importer/goal_editor.gd")
 
 
 func _can_handle(object):
@@ -15,5 +16,6 @@ func _parse_category(object: Object, category: String) -> void:
 		instruction_editor.csv_importer_data = importer
 		add_custom_control(instruction_editor)
 	if category == "Goals":
-		pass
-		#add_custom_control(InstructionEditor.new())
+		var goal_editor = GoalEditor.new()
+		goal_editor.csv_importer_data = importer
+		add_custom_control(goal_editor)

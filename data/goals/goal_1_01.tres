@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bsx05i7kc4kx3"]
+
+[ext_resource type="Script" path="res://data/goals/goal_1_01.gd" id="1_x66t5"]
+
+[resource]
+script = ExtResource("1_x66t5")
+level = 1
+text = "c >= 4"
