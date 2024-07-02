@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RunStats" load_steps=2 format=3 uid="uid://dlj58g8yjlk2t"]
+
+[ext_resource type="Script" path="res://data/run_stats/run_stats.gd" id="1_awv2j"]
+
+[resource]
+script = ExtResource("1_awv2j")
+hands_per_round = 3
+discards_per_round = 3
+default_hand_size = 6
+card_selection_limit = 5

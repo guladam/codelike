@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CardStack" load_steps=2 format=3 uid="uid://dbxc4p6v1ebe1"]
+
+[ext_resource type="Script" path="res://data/card_stacks/card_stack.gd" id="1_onc36"]
+
+[resource]
+script = ExtResource("1_onc36")
+csv_file = ""
+instructions = Array[Resource("res://data/instructions/code/instruction.gd")]([])
