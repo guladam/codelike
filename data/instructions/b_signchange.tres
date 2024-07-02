@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cinq3k162smk4"]
+
+[ext_resource type="Script" path="res://data/instructions/code/change_sign_instruction.gd" id="1_k3pdc"]
+[ext_resource type="Resource" uid="uid://b6nkkr7qncps6" path="res://data/variables/var_b.tres" id="2_ofskd"]
+
+[resource]
+script = ExtResource("1_k3pdc")
+name = "b=-b"
+variable_to_set = ExtResource("2_ofskd")

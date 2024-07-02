@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://vbcer7xf8eyk"]
+
+[ext_resource type="Script" path="res://data/instructions/code/plus_plus_instruction.gd" id="1_ix4v1"]
+[ext_resource type="Resource" uid="uid://07y1afvbneja" path="res://data/variables/var_c.tres" id="2_l5g1a"]
+
+[resource]
+script = ExtResource("1_ix4v1")
+name = "c++"
+variable_to_set = ExtResource("2_l5g1a")

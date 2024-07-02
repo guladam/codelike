@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bn2u2sivl4b55"]
+
+[ext_resource type="Script" path="res://data/instructions/code/random_1_6_instruction.gd" id="1_7e6p3"]
+[ext_resource type="Resource" uid="uid://b8phh71v34xeq" path="res://data/variables/var_d.tres" id="2_c673c"]
+
+[resource]
+script = ExtResource("1_7e6p3")
+name = "d=(d6)"
+variable_to_set = ExtResource("2_c673c")

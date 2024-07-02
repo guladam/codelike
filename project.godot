@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Codelike"
+config/tags=PackedStringArray("ongoing")
 run/main_scene="res://game/game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -27,7 +28,7 @@ window/size/viewport_height=720
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/panku_console/plugin.cfg")
+enabled=PackedStringArray("res://addons/csv_data_importer/plugin.cfg", "res://addons/panku_console/plugin.cfg")
 
 [file_customization]
 

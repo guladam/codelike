@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://btgr6ddfv3w8n"]
+
+[ext_resource type="Script" path="res://data/instructions/code/plus_plus_instruction.gd" id="1_dvmov"]
+[ext_resource type="Resource" uid="uid://b6nkkr7qncps6" path="res://data/variables/var_b.tres" id="2_wetal"]
+
+[resource]
+script = ExtResource("1_dvmov")
+name = "b++"
+variable_to_set = ExtResource("2_wetal")

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CSVImporter" load_steps=2 format=3 uid="uid://0x25jkir7e10"]
+
+[ext_resource type="Script" path="res://addons/csv_data_importer/csv_importer.gd" id="1_vqcav"]
+
+[resource]
+script = ExtResource("1_vqcav")
+instruction_path = "res://data/instructions"
+instruction_code_path = "res://data/instructions/code"
+instruction_csv = "res://data/csv/instructions.csv"
+goals_path = "res://data/goals"
+goals_csv = ""
+variables_path = "res://data/variables"

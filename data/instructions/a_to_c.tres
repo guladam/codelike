@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://c414ennhnaaf"]
+
+[ext_resource type="Script" path="res://data/instructions/code/var_to_var_instruction.gd" id="1_e6nvc"]
+[ext_resource type="Resource" uid="uid://07y1afvbneja" path="res://data/variables/var_c.tres" id="2_g8ueg"]
+[ext_resource type="Resource" uid="uid://dyrxasusfl33w" path="res://data/variables/var_a.tres" id="3_ep1eb"]
+
+[resource]
+script = ExtResource("1_e6nvc")
+second_variable = ExtResource("2_g8ueg")
+name = "a=c"
+variable_to_set = ExtResource("3_ep1eb")

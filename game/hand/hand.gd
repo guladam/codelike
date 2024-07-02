@@ -12,6 +12,7 @@ var dragging_card: Card = null
 var temporary_index := 0
 var final_new_index := 0
 var all_cards_size: float
+var final_y_separation: float
 var y_offset: float
 
 
@@ -47,7 +48,7 @@ func discard() -> void:
 func _update_cards() -> void:
 	var cards := get_child_count()
 	all_cards_size = Y_SIZE * cards + (y_separation * (cards - 1))
-	var final_y_separation: float = y_separation
+	final_y_separation = y_separation
 	
 	if all_cards_size > size.y:
 		final_y_separation = (size.y - Y_SIZE * cards) / (cards - 1)
@@ -58,20 +59,31 @@ func _update_cards() -> void:
 	
 	for i in cards:
 		var card := get_child(i)
-		var y_pos: float = y_offset + Y_SIZE * i + final_y_separation * i
+		var y_pos: float = _get_nth_card_y_position(i)
 		card.position = Vector2(x_offset, y_pos)
+		
+		if card is Card and card.selected:
+			card.position.x += 50
 
 
 func _update_cards_dragging(card_index: int, shadow_index: int) -> void:
-	var shadow := get_child(shadow_index)
+	var card := get_child(card_index) as Card
+	var shadow := get_child(shadow_index) 
+	
 	move_child(shadow, card_index)
-	_update_cards()
+	shadow.position.y = _get_nth_card_y_position(card_index)
+	card.tween_to_position(Vector2(card.position.x, _get_nth_card_y_position(shadow_index)))
 
 
 func _get_dragging_card_new_index() -> int:
+	@warning_ignore("integer_division")
 	var card_y_pos := int(dragging_card.position.y - y_offset - position.y) + Y_SIZE / 2
 	var dist := all_cards_size / get_child_count()
 	return clampi(int(card_y_pos / dist), 0, get_child_count()-1)
+
+
+func _get_nth_card_y_position(n: int) -> float:
+	return y_offset + Y_SIZE * n + final_y_separation * n
 
 
 func _on_card_dragging_started(card: Card) -> void:

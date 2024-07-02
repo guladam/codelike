@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://btfr0yj0hyg8b"]
+
+[ext_resource type="Script" path="res://data/instructions/code/change_sign_instruction.gd" id="1_heabc"]
+[ext_resource type="Resource" uid="uid://07y1afvbneja" path="res://data/variables/var_c.tres" id="2_0sjea"]
+
+[resource]
+script = ExtResource("1_heabc")
+name = "c=-c"
+variable_to_set = ExtResource("2_0sjea")

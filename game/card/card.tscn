@@ -34,10 +34,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(125, 40)
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_cbagm")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="Shadow" type="ColorRect" parent="Visuals"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.411765)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

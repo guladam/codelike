@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://brjjujql1m3nl"]
+
+[ext_resource type="Script" path="res://data/instructions/code/mul_2_instruction.gd" id="1_v3pmy"]
+[ext_resource type="Resource" uid="uid://dyrxasusfl33w" path="res://data/variables/var_a.tres" id="2_wmmrk"]
+
+[resource]
+script = ExtResource("1_v3pmy")
+name = "a*=2"
+variable_to_set = ExtResource("2_wmmrk")

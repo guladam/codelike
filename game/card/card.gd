@@ -9,10 +9,15 @@ const LERP_HOVER_ANGLE_MAX := 0.05
 
 static var cards_selected := 0
 
+var tween_rotation: Tween
+var tween_hover: Tween
+var tween_position: Tween
+
 @onready var selected := false
 @onready var name_label: Label = $Label
 @onready var state_machine: CardStateMachine = $StateMachine
 @onready var visuals: TextureRect = $Visuals
+@onready var shadow: ColorRect = $Visuals/Shadow
 
 
 func _ready() -> void:
@@ -30,11 +35,19 @@ func toggle_selected() -> void:
 	selected = not selected
 	
 	if selected:
-		position.x += 20
+		position.x += 50
 		cards_selected += 1
 	else:
-		position.x -= 20
+		position.x -= 50
 		cards_selected -= 1
+
+
+func tween_to_position(new_position: Vector2) -> void:
+	if tween_position:
+		tween_position.kill()
+		
+	tween_position = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween_position.tween_property(self, "position", new_position, 0.3)
 
 
 func _on_gui_input(event: InputEvent) -> void:

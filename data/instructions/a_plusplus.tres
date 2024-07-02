@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bfk1obu4sq2yv"]
+
+[ext_resource type="Script" path="res://data/instructions/code/plus_plus_instruction.gd" id="1_ytuer"]
+[ext_resource type="Resource" uid="uid://dyrxasusfl33w" path="res://data/variables/var_a.tres" id="2_rhx54"]
+
+[resource]
+script = ExtResource("1_ytuer")
+name = "a++"
+variable_to_set = ExtResource("2_rhx54")

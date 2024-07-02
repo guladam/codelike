@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://djnmensv5xlmv"]
+
+[ext_resource type="Script" path="res://data/instructions/code/plus_plus_instruction.gd" id="1_6twhj"]
+[ext_resource type="Resource" uid="uid://b8phh71v34xeq" path="res://data/variables/var_d.tres" id="2_lkhdw"]
+
+[resource]
+script = ExtResource("1_6twhj")
+name = "d++"
+variable_to_set = ExtResource("2_lkhdw")
