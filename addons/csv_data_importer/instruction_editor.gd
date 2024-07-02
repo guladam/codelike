@@ -28,8 +28,6 @@ func _on_button_pressed():
 		
 		if line.size() <= 1: # skip last line
 			continue
-			
-		print(line)
 		
 		var instruction_path = csv_importer_data.instruction_path + "/" + line[0] + ".tres"
 		var script_path = csv_importer_data.instruction_code_path + "/" + line[1]

@@ -5,7 +5,7 @@ a_random1_6,random_1_6_instruction.gd,a=(d6),var_a,
 a_signchange,change_sign_instruction.gd,a=-a,var_a,
 a_to_b,var_to_var_instruction.gd,a=b,var_a,var_b
 a_to_c,var_to_var_instruction.gd,a=c,var_a,var_c
-a_to_d,var_to_var_instruction.gd,a=d,var_a,var_a
+a_to_d,var_to_var_instruction.gd,a=d,var_a,var_d
 b_mul_2,mul_2_instruction.gd,b*=2,var_b,
 b_plusplus,plus_plus_instruction.gd,b++,var_b,
 b_random1_6,random_1_6_instruction.gd,b=(d6),var_b,
