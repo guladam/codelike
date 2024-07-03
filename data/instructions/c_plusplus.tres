@@ -5,5 +5,5 @@
 
 [resource]
 script = ExtResource("1_ix4v1")
-name = "c++"
+name = "🐴|$ARROW_SMALL|🐴+1"
 variable_to_set = ExtResource("2_l5g1a")

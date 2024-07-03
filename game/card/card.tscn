@@ -1,29 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1uore5l6m0pb"]
+[gd_scene load_steps=10 format=3 uid="uid://d1uore5l6m0pb"]
 
 [ext_resource type="Script" path="res://game/card/card.gd" id="1_sfu0b"]
 [ext_resource type="Material" uid="uid://bron2iry0k8at" path="res://shared_assets/2d_perspective_shader.tres" id="2_fg2rg"]
 [ext_resource type="Script" path="res://game/card/card_state_machine.gd" id="2_qi14k"]
+[ext_resource type="Texture2D" uid="uid://b2iatrwuny4eb" path="res://game/card/punched_card.png" id="3_5qvng"]
 [ext_resource type="Script" path="res://game/card/card_base_state.gd" id="3_522le"]
+[ext_resource type="PackedScene" uid="uid://cvh7twifrw2v8" path="res://game/expression_builder/expression_builder.tscn" id="4_378fi"]
 [ext_resource type="Script" path="res://game/card/card_clicked_state.gd" id="4_l2ga2"]
 [ext_resource type="Script" path="res://game/card/card_dragging_state.gd" id="5_oamsg"]
 [ext_resource type="Script" path="res://game/card/card_released_state.gd" id="6_jv811"]
 
-[sub_resource type="Gradient" id="Gradient_pvuib"]
-colors = PackedColorArray(0.375914, 0.29127, 0.279314, 1, 0.875648, 0.645794, 0.51669, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cbagm"]
-gradient = SubResource("Gradient_pvuib")
-width = 250
-height = 80
-
-[sub_resource type="LabelSettings" id="LabelSettings_s35c2"]
-font_size = 32
-shadow_color = Color(0, 0, 0, 0.6)
-
 [node name="Card" type="Control"]
-custom_minimum_size = Vector2(250, 80)
+custom_minimum_size = Vector2(300, 150)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 150.0
 script = ExtResource("1_sfu0b")
 
 [node name="Visuals" type="TextureRect" parent="."]
@@ -34,14 +26,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(125, 40)
+pivot_offset = Vector2(150, 75)
 mouse_filter = 2
-texture = SubResource("GradientTexture2D_cbagm")
-expand_mode = 2
+texture = ExtResource("3_5qvng")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="Shadow" type="ColorRect" parent="Visuals"]
-visible = false
+[node name="Shadow" type="TextureRect" parent="Visuals"]
+modulate = Color(0, 0, 0, 0.262745)
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -53,25 +45,18 @@ offset_right = 10.0
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.411765)
+texture = ExtResource("3_5qvng")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Label" type="Label" parent="."]
+[node name="ExpressionBuilder" parent="." instance=ExtResource("4_378fi")]
+custom_minimum_size = Vector2(250, 75)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -49.5
-offset_top = -22.5
-offset_right = 49.5
-offset_bottom = 22.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Card 1"
-label_settings = SubResource("LabelSettings_s35c2")
-horizontal_alignment = 1
-vertical_alignment = 2
+offset_left = -125.0
+offset_top = -37.5
+offset_right = 125.0
+offset_bottom = 37.5
+alignment = 1
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_qi14k")

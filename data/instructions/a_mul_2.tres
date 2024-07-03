@@ -5,5 +5,5 @@
 
 [resource]
 script = ExtResource("1_v3pmy")
-name = "a*=2"
+name = "🐐|$ARROW_SMALL|🐐*2"
 variable_to_set = ExtResource("2_wmmrk")

@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_x66t5")
 level = 1
-text = "c >= 4"
+text = "🐴 >= 4"

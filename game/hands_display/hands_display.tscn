@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvd0mkamo0vdf"]
+
+[ext_resource type="Script" path="res://game/hands_display/hands_display.gd" id="1_7bnus"]
+[ext_resource type="Resource" uid="uid://dlj58g8yjlk2t" path="res://data/run_stats/run_stats.tres" id="2_utxhy"]
+
+[node name="HandsDisplay" type="Label"]
+offset_right = 105.0
+offset_bottom = 22.0
+text = "Hands: 3"
+vertical_alignment = 1
+script = ExtResource("1_7bnus")
+run_stats = ExtResource("2_utxhy")

@@ -8,6 +8,7 @@ func enter() -> void:
 		await card.ready
 	
 	mouse_over_card = false
+	card.z_index = 0
 	card.shadow.hide()
 	card.pivot_offset = card.size / 2
 	_tween_rotation_reset()
@@ -41,7 +42,7 @@ func on_gui_input(event: InputEvent) -> void:
 
 func on_mouse_entered() -> void:
 	mouse_over_card = true
-	card.z_index = 9
+	card.z_index = 1
 	
 	if card.tween_hover:
 		card.tween_hover.kill()

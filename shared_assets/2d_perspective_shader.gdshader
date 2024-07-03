@@ -4,6 +4,7 @@
 shader_type canvas_item;
 
 // Camera FOV
+uniform float texture_scale_multiplier = 1.0;
 uniform float fov : hint_range(1, 179) = 90;
 uniform bool cull_back = true;
 uniform float y_rot : hint_range(-180, 180) = 0.0;
@@ -44,7 +45,8 @@ void vertex(){
 	p.xy *= v * inv_rot_mat[2].z;
 	o = v * inv_rot_mat[2].xy;
 
-	VERTEX += (UV - 0.5) / TEXTURE_PIXEL_SIZE * t * (1.0 - inset);
+	vec2 texture_pixel_size = vec2(TEXTURE_PIXEL_SIZE.x * texture_scale_multiplier, TEXTURE_PIXEL_SIZE.y * texture_scale_multiplier);
+	VERTEX += (UV - 0.5) / texture_pixel_size  * t * (1.0 - inset);
 }
 
 void fragment(){

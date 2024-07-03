@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://nagbunpxtinh"]
+
+[ext_resource type="Script" path="res://game/run/run.gd" id="1_abb47"]
+[ext_resource type="Resource" uid="uid://bsx05i7kc4kx3" path="res://data/goals/goal_1_01.tres" id="2_unun2"]
+[ext_resource type="Resource" uid="uid://d2pncsg7xxwyn" path="res://data/goals/goal_2_01.tres" id="3_8ymfm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_62xch"]
+font_size = 120
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.584314)
+shadow_offset = Vector2(2, 2)
+
+[node name="Run" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_abb47")
+level_goals = Array[Resource("res://data/goals/goal.gd")]([ExtResource("2_unun2"), ExtResource("3_8ymfm")])
+
+[node name="WinScreen" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.927379, 0.69313, 0.83768, 1)
+
+[node name="Label" type="Label" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 20.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You've won! :)"
+label_settings = SubResource("LabelSettings_62xch")

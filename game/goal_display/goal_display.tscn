@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy32wg3fcxlu7"]
+
+[ext_resource type="Script" path="res://game/goal_display/goal_display.gd" id="1_1ewik"]
+[ext_resource type="Resource" uid="uid://bsx05i7kc4kx3" path="res://data/goals/goal_1_01.tres" id="2_wfy8b"]
+
+[node name="GoalDisplay" type="Label"]
+offset_right = 105.0
+offset_bottom = 22.0
+text = "Goal: TODO"
+vertical_alignment = 1
+script = ExtResource("1_1ewik")
+goal = ExtResource("2_wfy8b")

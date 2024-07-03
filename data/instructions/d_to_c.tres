@@ -7,5 +7,5 @@
 [resource]
 script = ExtResource("1_s7one")
 second_variable = ExtResource("2_e7263")
-name = "d=c"
+name = "🍰|$ARROW_SMALL|🐴"
 variable_to_set = ExtResource("3_uu5id")

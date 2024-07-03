@@ -5,5 +5,5 @@
 
 [resource]
 script = ExtResource("1_v13ky")
-name = "b=(d6)"
+name = "🤡|$ARROW_SMALL|🎲"
 variable_to_set = ExtResource("2_yxh6m")

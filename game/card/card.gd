@@ -9,15 +9,17 @@ const LERP_HOVER_ANGLE_MAX := 0.05
 
 static var cards_selected := 0
 
+@export var instruction: Instruction : set = set_instruction
+
 var tween_rotation: Tween
 var tween_hover: Tween
 var tween_position: Tween
 
 @onready var selected := false
-@onready var name_label: Label = $Label
-@onready var state_machine: CardStateMachine = $StateMachine
 @onready var visuals: TextureRect = $Visuals
-@onready var shadow: ColorRect = $Visuals/Shadow
+@onready var shadow: TextureRect = $Visuals/Shadow
+@onready var expression_builder: ExpressionBuilder = $ExpressionBuilder
+@onready var state_machine: CardStateMachine = $StateMachine
 
 
 func _ready() -> void:
@@ -26,6 +28,15 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	state_machine.on_input(event)
+
+
+func set_instruction(value: Instruction) -> void:
+	instruction = value
+	
+	if not is_node_ready() or not value:
+		return
+	
+	expression_builder.build_expression(CustomExpression.str_to_expr_array(instruction.name))
 
 
 func toggle_selected() -> void:

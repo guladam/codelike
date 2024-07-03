@@ -5,5 +5,5 @@
 
 [resource]
 script = ExtResource("1_qawry")
-name = "d*=2"
+name = "🍰|$ARROW_SMALL|🍰*2"
 variable_to_set = ExtResource("2_56aut")

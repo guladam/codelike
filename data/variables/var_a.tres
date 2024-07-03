@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="Variable" load_steps=3 format=3 uid="uid://dyrxasusfl33w"]
+[gd_resource type="Resource" script_class="Variable" load_steps=2 format=3 uid="uid://dyrxasusfl33w"]
 
 [ext_resource type="Script" path="res://data/variables/variable.gd" id="1_6imgi"]
-[ext_resource type="Texture2D" uid="uid://bt1kt8ebu46vr" path="res://icon.svg" id="1_76k23"]
 
 [resource]
 script = ExtResource("1_6imgi")
 name = "a"
-icon = ExtResource("1_76k23")
+icon = "🐐"
 value = 0

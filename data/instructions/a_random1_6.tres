@@ -5,5 +5,5 @@
 
 [resource]
 script = ExtResource("1_x0frm")
-name = "a=(d6)"
+name = "🐐|$ARROW_SMALL|🎲"
 variable_to_set = ExtResource("2_ghttl")

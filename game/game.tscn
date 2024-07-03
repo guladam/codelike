@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfrldq0f6rnfc"]
+[gd_scene load_steps=14 format=3 uid="uid://bfrldq0f6rnfc"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_1xsac"]
 [ext_resource type="PackedScene" uid="uid://b2xa8k3x5rjoi" path="res://game/hand/hand.tscn" id="1_u1owk"]
+[ext_resource type="Resource" uid="uid://dlj58g8yjlk2t" path="res://data/run_stats/run_stats.tres" id="2_l5cys"]
+[ext_resource type="Resource" uid="uid://dbxc4p6v1ebe1" path="res://data/card_stacks/deck.tres" id="3_hm1bw"]
+[ext_resource type="Resource" uid="uid://bsx05i7kc4kx3" path="res://data/goals/goal_1_01.tres" id="3_jd447"]
+[ext_resource type="PackedScene" uid="uid://dy32wg3fcxlu7" path="res://game/goal_display/goal_display.tscn" id="5_0s7mq"]
+[ext_resource type="PackedScene" uid="uid://dvd0mkamo0vdf" path="res://game/hands_display/hands_display.tscn" id="6_2eg63"]
+[ext_resource type="PackedScene" uid="uid://fphmicmbeu7i" path="res://game/discards_display/discards_display.tscn" id="7_jmams"]
+[ext_resource type="PackedScene" uid="uid://djuh52s2c65dr" path="res://game/variable_display/variable_display.tscn" id="8_uf6h0"]
+[ext_resource type="Resource" uid="uid://dyrxasusfl33w" path="res://data/variables/var_a.tres" id="9_41p2j"]
+[ext_resource type="Resource" uid="uid://07y1afvbneja" path="res://data/variables/var_c.tres" id="10_fepy1"]
+[ext_resource type="Resource" uid="uid://b8phh71v34xeq" path="res://data/variables/var_d.tres" id="11_x63v1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jan1y"]
+font_size = 32
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -11,6 +24,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1xsac")
+run_stats = ExtResource("2_l5cys")
+goal = ExtResource("3_jd447")
+deck = ExtResource("3_hm1bw")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -19,47 +35,100 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.138715, 0.104082, 0.150402, 1)
+color = Color(0.310937, 0.247307, 0.332428, 1)
 
-[node name="HandArea" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(300, 600)
+[node name="Left" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -37.0
+offset_right = 165.0
+offset_bottom = 37.0
+grow_vertical = 2
+
+[node name="GoalDisplay" parent="Left" instance=ExtResource("5_0s7mq")]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_jan1y")
+
+[node name="HandsDisplay" parent="Left" instance=ExtResource("6_2eg63")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DiscardsDisplay" parent="Left" instance=ExtResource("7_jmams")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BottomRight" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = 233.0
+offset_top = 152.0
+offset_right = 597.0
+offset_bottom = 329.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Variables" type="HBoxContainer" parent="BottomRight"]
+layout_mode = 2
+
+[node name="VariableDisplayA" parent="BottomRight/Variables" instance=ExtResource("8_uf6h0")]
+layout_mode = 2
+variable = ExtResource("9_41p2j")
+
+[node name="VariableDisplayB" parent="BottomRight/Variables" instance=ExtResource("8_uf6h0")]
+layout_mode = 2
+
+[node name="VariableDisplayC" parent="BottomRight/Variables" instance=ExtResource("8_uf6h0")]
+layout_mode = 2
+variable = ExtResource("10_fepy1")
+
+[node name="VariableDisplayD" parent="BottomRight/Variables" instance=ExtResource("8_uf6h0")]
+layout_mode = 2
+variable = ExtResource("11_x63v1")
+
+[node name="Buttons" type="HBoxContainer" parent="BottomRight"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="BottomRight/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Play"
+
+[node name="DiscardButton" type="Button" parent="BottomRight/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Discard"
+
+[node name="HandArea" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(400, 600)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -300.0
+offset_right = 200.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.164706)
 
 [node name="Hand" parent="." instance=ExtResource("1_u1owk")]
-custom_minimum_size = Vector2(300, 600)
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 600)
 layout_mode = 1
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 119.0
-offset_top = -171.0
-offset_right = 209.0
-offset_bottom = -140.0
-grow_vertical = 0
-text = "Draw Card"
-
-[node name="Button2" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -239.0
-offset_top = -160.0
-offset_right = -132.0
-offset_bottom = -129.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Discard Card"
+deck = ExtResource("3_hm1bw")

@@ -1,3 +1,3 @@
 resource_name,level,text,code
-goal_1_01,1,c >= 4,VAR_C.value >= 4
-goal_2_01,2,b >= 4 and d < 0,VAR_B.value >= 4 and VAR_D.value < 0
+goal_1_01,1,🐴 >= 4,VAR_C.value >= 4
+goal_2_01,2,🤡 >= 4 and 🍰 < 0,VAR_B.value >= 4 and VAR_D.value < 0

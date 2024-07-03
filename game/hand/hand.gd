@@ -3,9 +3,10 @@ extends Control
 
 const CARD_PLACEHOLDER = preload("res://game/hand/card_placeholder.tscn")
 const CARD = preload("res://game/card/card.tscn")
-const X_SIZE := 250
-const Y_SIZE := 80
+const X_SIZE := 300
+const Y_SIZE := 150
 
+@export var deck: CardStack
 @export var y_separation := 20
 
 var dragging_card: Card = null
@@ -29,7 +30,7 @@ func _process(_delta: float) -> void:
 func draw() -> void:
 	var new_card := CARD.instantiate() as Card
 	add_child(new_card)
-	new_card.name_label.text = "Card %s" % get_child_count()
+	new_card.instruction = deck.draw()
 	new_card.dragging_started.connect(_on_card_dragging_started)
 	new_card.released.connect(_on_card_released)
 	_update_cards()

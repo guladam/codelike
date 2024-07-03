@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://djuh52s2c65dr"]
+
+[ext_resource type="Script" path="res://game/variable_display/variable_display.gd" id="1_equip"]
+[ext_resource type="Resource" uid="uid://b6nkkr7qncps6" path="res://data/variables/var_b.tres" id="2_7fr0t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d6rkn"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_nn54i"]
+font_size = 32
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.219608)
+shadow_offset = Vector2(2, 2)
+
+[node name="VariableDisplay" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+script = ExtResource("1_equip")
+variable = ExtResource("2_7fr0t")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+text = "🐐"
+label_settings = SubResource("LabelSettings_d6rkn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="."]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_nn54i")
+horizontal_alignment = 1
+vertical_alignment = 1

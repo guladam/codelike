@@ -40,6 +40,10 @@ folder_colors={
 "res://shared_assets/": "blue"
 }
 
+[gui]
+
+theme/custom="res://shared_assets/game_main_theme.tres"
+
 [input]
 
 toggle_console={
