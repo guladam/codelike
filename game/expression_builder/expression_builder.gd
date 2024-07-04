@@ -45,6 +45,7 @@ func _create_texture_rect(custom_expression: CustomExpression) -> void:
 	var texture_rect := TextureRect.new()
 	texture_rect.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	texture_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_edit_texture_rect(texture_rect, custom_expression)
 	add_child(texture_rect)
 

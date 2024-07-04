@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfrldq0f6rnfc"]
+[gd_scene load_steps=15 format=3 uid="uid://bfrldq0f6rnfc"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_1xsac"]
 [ext_resource type="PackedScene" uid="uid://b2xa8k3x5rjoi" path="res://game/hand/hand.tscn" id="1_u1owk"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://dyrxasusfl33w" path="res://data/variables/var_a.tres" id="9_41p2j"]
 [ext_resource type="Resource" uid="uid://07y1afvbneja" path="res://data/variables/var_c.tres" id="10_fepy1"]
 [ext_resource type="Resource" uid="uid://b8phh71v34xeq" path="res://data/variables/var_d.tres" id="11_x63v1"]
+[ext_resource type="Texture2D" uid="uid://bt1kt8ebu46vr" path="res://icon.svg" id="13_tosfe"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jan1y"]
 font_size = 32
@@ -127,8 +128,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.164706)
 
-[node name="Hand" parent="." instance=ExtResource("1_u1owk")]
+[node name="Hand" parent="." node_paths=PackedStringArray("deck_control_node") instance=ExtResource("1_u1owk")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 600)
 layout_mode = 1
 deck = ExtResource("3_hm1bw")
+deck_control_node = NodePath("../DeckView")
+discard_position = Vector2(-1000, 180)
+
+[node name="DeckView" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 74.0
+offset_top = -210.0
+offset_right = 202.0
+offset_bottom = -82.0
+grow_vertical = 0
+texture = ExtResource("13_tosfe")

@@ -11,4 +11,4 @@ func set_run_stats(value: RunStats) -> void:
 
 
 func _update_text() -> void:
-	text = "Hands: %s" % run_stats.current_hands
+	text = tr("HANDS_DISPLAY") % run_stats.current_hands

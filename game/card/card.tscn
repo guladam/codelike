@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1uore5l6m0pb"]
+[gd_scene load_steps=11 format=3 uid="uid://d1uore5l6m0pb"]
 
 [ext_resource type="Script" path="res://game/card/card.gd" id="1_sfu0b"]
+[ext_resource type="Resource" uid="uid://dlj58g8yjlk2t" path="res://data/run_stats/run_stats.tres" id="2_674d6"]
 [ext_resource type="Material" uid="uid://bron2iry0k8at" path="res://shared_assets/2d_perspective_shader.tres" id="2_fg2rg"]
 [ext_resource type="Script" path="res://game/card/card_state_machine.gd" id="2_qi14k"]
 [ext_resource type="Texture2D" uid="uid://b2iatrwuny4eb" path="res://game/card/punched_card.png" id="3_5qvng"]
@@ -17,6 +18,7 @@ anchors_preset = 0
 offset_right = 300.0
 offset_bottom = 150.0
 script = ExtResource("1_sfu0b")
+run_stats = ExtResource("2_674d6")
 
 [node name="Visuals" type="TextureRect" parent="."]
 material = ExtResource("2_fg2rg")
@@ -56,7 +58,6 @@ offset_left = -125.0
 offset_top = -37.5
 offset_right = 125.0
 offset_bottom = 37.5
-alignment = 1
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_qi14k")

@@ -26,8 +26,6 @@ func on_input(event: InputEvent) -> void:
 	if mouse_motion:
 		card.global_position = card.get_global_mouse_position() - card.pivot_offset
 
-	if cancel:
-		transition_requested.emit(self, CardState.State.BASE)
-	elif minimum_drag_time_elapsed and confirm:
+	if minimum_drag_time_elapsed and (confirm or cancel):
 		get_viewport().set_input_as_handled()
 		transition_requested.emit(self, CardState.State.RELEASED)

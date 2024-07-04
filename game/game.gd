@@ -5,6 +5,7 @@ signal level_won
 signal level_lost
 
 const CARD = preload("res://game/card/card.tscn")
+const EXECUTION_WINDOW = preload("res://game/execution_window/execution_window.tscn")
 
 @export var run_stats: RunStats
 @export var goal: Goal
@@ -28,14 +29,31 @@ func _ready() -> void:
 
 func _start_game() -> void:
 	deck.shuffle()
-	_draw_cards(run_stats.current_hand_size)
+	_draw_cards(range(run_stats.current_hand_size))
 
 
-func _draw_cards(amount: int) -> void:
+func _draw_cards(indices: Array) -> void:
+	var current_cards_in_hand := hand.get_child_count()
+	
+	if current_cards_in_hand == 0:
+		current_cards_in_hand = indices.size()
+		
+	hand.calculate_y_positions(current_cards_in_hand)
+	
 	var tween := create_tween()
-	for i in amount:
-		tween.tween_callback(hand.draw)
-		tween.tween_interval(0.25)
+	for i in indices:
+		tween.tween_callback(hand.draw.bind(i))
+		tween.tween_interval(0.15)
+
+
+func _discard_cards(indices: Array) -> Tween:
+	var tween := create_tween()
+	
+	for i in indices:
+		tween.tween_callback(hand.discard.bind(i))
+		tween.tween_interval(0.15)
+		
+	return tween
 
 
 func _get_selected_cards() -> Array[Node]:
@@ -45,30 +63,24 @@ func _get_selected_cards() -> Array[Node]:
 	)
 
 
+func _play_cards(cards: Array[Node]) -> void:
+	var instructions: Array[Instruction] = []
+	for card: Card in cards:
+		instructions.append(card.instruction)
+	
+	var new_window = EXECUTION_WINDOW.instantiate() as ExecutionWindow
+	add_child(new_window)
+	new_window.init_window(instructions)
+	new_window.execution_finished.connect(_on_execution_window_closed.bind(cards))
+
+
 func _on_play_button_pressed() -> void:
 	var selected_cards := _get_selected_cards()
 	
 	if selected_cards.is_empty():
 		return
 	
-	for card: Card in selected_cards:
-		card.instruction.execute()
-		card.queue_free()
-	
-	run_stats.current_hands -= 1
-	Card.cards_selected = 0
-	
-	if goal.are_goals_met():
-		level_won.emit()
-		#game_end_panel.show_end_screen(true)
-		return
-		
-	if run_stats.current_hands <= 0 and not goal.are_goals_met():
-		level_lost.emit()
-		#game_end_panel.show_end_screen(false)
-		return
-	
-	_draw_cards(selected_cards.size())
+	_play_cards(selected_cards)
 
 
 func _on_discard_button_pressed() -> void:
@@ -77,10 +89,32 @@ func _on_discard_button_pressed() -> void:
 	if selected_cards.is_empty() or run_stats.current_discards <= 0:
 		return
 	
-	for card: Card in selected_cards:
-		card.queue_free()
-	
-	_draw_cards(selected_cards.size())
+	var indices := selected_cards.map(func(card: Card): return card.get_index())
+	var tween := _discard_cards(indices)
+	tween.finished.connect(func():
+		for card: Card in selected_cards:
+			card.queue_free()
+		_draw_cards(indices)
+	)
 	
 	Card.cards_selected = 0
 	run_stats.current_discards -= 1
+
+
+func _on_execution_window_closed(cards_played: Array[Node]) -> void:
+	run_stats.current_hands -= 1
+	Card.cards_selected = 0
+	
+	if goal.are_goals_met():
+		level_won.emit()
+		return
+		
+	if run_stats.current_hands <= 0 and not goal.are_goals_met():
+		level_lost.emit()
+		return
+	
+	var indices := cards_played.map(func(card: Card): return card.get_index())
+	for card: Card in cards_played:
+		card.queue_free()
+	
+	_draw_cards(indices)

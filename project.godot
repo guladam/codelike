@@ -63,6 +63,10 @@ cancel={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://data/translations/localization.en.translation", "res://data/translations/localization.hu.translation")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

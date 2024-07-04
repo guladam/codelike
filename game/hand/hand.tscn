@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/hand/hand.gd" id="1_sriyf"]
 
 [node name="Hand" type="Control"]
-custom_minimum_size = Vector2(300, 400)
+custom_minimum_size = Vector2(400, 600)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

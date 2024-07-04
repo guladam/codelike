@@ -6,4 +6,4 @@ extends Label
 
 func set_goal(value: Goal) -> void:
 	goal = value
-	text = "Goal: %s" % value.text
+	text = tr("GOAL_DISPLAY") % value.text

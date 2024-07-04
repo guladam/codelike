@@ -11,4 +11,4 @@ func set_run_stats(value: RunStats) -> void:
 
 
 func _update_text() -> void:
-	text = "Discards: %s" % run_stats.current_discards
+	text = tr("DISCARDS_DISPLAY") % run_stats.current_discards
