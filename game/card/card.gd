@@ -23,9 +23,11 @@ static var cards_selected := 0
 @export var lerp_hover_angle_max := 0.05
 
 var mouse_over_card := false
+var interactable := false
 var tween_rotation: Tween
 var tween_hover: Tween
 var tween_position: Tween
+var tween_scale: Tween
 
 @onready var selected := false
 @onready var visuals: TextureRect = $Visuals
@@ -39,6 +41,9 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if not interactable:
+		return
+	
 	state_machine.on_input(event)
 
 
@@ -51,7 +56,21 @@ func set_instruction(value: Instruction) -> void:
 	expression_builder.build_expression(CustomExpression.str_to_expr_array(instruction.name))
 
 
+func enable() -> void:
+	interactable = true
+	
+	if mouse_over_card:
+		_on_mouse_entered()
+
+
+func disable() -> void:
+	interactable = false
+
+
 func toggle_selected() -> void:
+	if not interactable:
+		return
+		
 	if not selected and cards_selected >= run_stats.current_card_selection_limit:
 		return
 
@@ -68,23 +87,63 @@ func toggle_selected() -> void:
 	tween_to_position(final_pos, selection_tween_length)
 
 
-func tween_to_position(new_position: Vector2, length: float) -> void:
+func draw_tween(target_position: Vector2, length: float) -> void:
+	if tween_rotation:
+		tween_rotation.kill()
+	if tween_scale:
+		tween_scale.kill()
+		
+	tween_rotation = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween_scale = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	rotation = (target_position - position).angle()
+	scale = Vector2.ZERO
+	tween_rotation.tween_property(self, "rotation", 0.0, length)
+	tween_scale.tween_property(self, "scale", Vector2.ONE, length)
+	tween_to_position(target_position, length)
+
+
+func discard_tween(target_position: Vector2, length: float) -> void:
+	if tween_rotation:
+		tween_rotation.kill()
+	if tween_scale:
+		tween_scale.kill()
+	
+	var angle := Vector2.LEFT.angle_to(target_position - global_position)
+	tween_rotation = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween_scale = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween_rotation.tween_property(self, "rotation", angle, length)
+	tween_scale.tween_property(self, "scale", Vector2.ZERO, length)
+	tween_to_position(target_position, length, "global_position")
+
+
+func tween_to_position(new_position: Vector2, length: float, property: String = "position") -> void:
 	if tween_position:
 		tween_position.kill()
-		
+	
 	tween_position = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
-	tween_position.tween_property(self, "position", new_position, length)
+	tween_position.tween_property(self, property, new_position, length)
 
 
 func _on_gui_input(event: InputEvent) -> void:
+	if not interactable:
+		return
+	
 	state_machine.on_gui_input(event)
 
 
 func _on_mouse_entered() -> void:
 	mouse_over_card = true
+	
+	if not interactable:
+		return
+	
 	state_machine.on_mouse_entered()
 
 
 func _on_mouse_exited() -> void:
 	mouse_over_card = false
+	
+	if not interactable:
+		return
+	
 	state_machine.on_mouse_exited()

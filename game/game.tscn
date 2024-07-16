@@ -128,12 +128,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.164706)
 
-[node name="Hand" parent="." node_paths=PackedStringArray("deck_control_node") instance=ExtResource("1_u1owk")]
+[node name="Hand" parent="." node_paths=PackedStringArray("deck_control_node", "discard_position") instance=ExtResource("1_u1owk")]
 unique_name_in_owner = true
 layout_mode = 1
 deck = ExtResource("3_hm1bw")
 deck_control_node = NodePath("../DeckView")
-discard_position = Vector2(-1000, 180)
+discard_position = NodePath("../DeckView")
 
 [node name="DeckView" type="TextureRect" parent="."]
 layout_mode = 1

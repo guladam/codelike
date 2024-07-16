@@ -37,13 +37,17 @@ func _draw_cards(indices: Array) -> void:
 	
 	if current_cards_in_hand == 0:
 		current_cards_in_hand = indices.size()
-		
+	
+	hand.disable_hand()
 	hand.calculate_y_positions(current_cards_in_hand)
 	
 	var tween := create_tween()
 	for i in indices:
 		tween.tween_callback(hand.draw.bind(i))
 		tween.tween_interval(0.15)
+	
+	tween.tween_interval(hand.draw_anim_length)
+	tween.finished.connect(func(): hand.enable_hand())
 
 
 func _discard_cards(indices: Array) -> Tween:
@@ -52,7 +56,9 @@ func _discard_cards(indices: Array) -> Tween:
 	for i in indices:
 		tween.tween_callback(hand.discard.bind(i))
 		tween.tween_interval(0.15)
-		
+	
+	tween.tween_interval(hand.discard_anim_length)
+	
 	return tween
 
 
@@ -89,12 +95,15 @@ func _on_discard_button_pressed() -> void:
 	if selected_cards.is_empty() or run_stats.current_discards <= 0:
 		return
 	
+	hand.disable_hand()
 	var indices := selected_cards.map(func(card: Card): return card.get_index())
 	var tween := _discard_cards(indices)
-	tween.finished.connect(func():
-		for card: Card in selected_cards:
-			card.queue_free()
-		_draw_cards(indices)
+	
+	tween.finished.connect(
+		func():
+			for card: Card in selected_cards:
+				card.queue_free()
+			_draw_cards(indices)
 	)
 	
 	Card.cards_selected = 0

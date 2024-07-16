@@ -9,10 +9,11 @@ const CARD = preload("res://game/card/card.tscn")
 
 @export_category("Visuals")
 @export var deck_control_node: Control
-@export var discard_position: Vector2
+@export var discard_position: Control
 @export var y_separation := 20
 @export var draw_anim_length := 0.25
 @export var discard_anim_length := 0.25
+@export var card_release_anim_length := 0.2
 
 var dragging_card: Card = null
 var dragging_card_current_index := 0
@@ -59,7 +60,7 @@ func draw(at: int) -> void:
 	
 	var target_pos := Vector2(x_offset, _get_nth_card_y_position(at))
 	new_card.global_position = deck_control_node.global_position
-	new_card.tween_to_position(target_pos, draw_anim_length)
+	new_card.draw_tween(target_pos, draw_anim_length)
 
 
 func discard(at: int) -> void:
@@ -67,7 +68,17 @@ func discard(at: int) -> void:
 		return
 		
 	var card := get_child(at) as Card
-	card.tween_to_position(discard_position, discard_anim_length)
+	card.discard_tween(discard_position.global_position, discard_anim_length)
+
+
+func enable_hand() -> void:
+	for card: Card in get_children():
+		card.enable()
+
+
+func disable_hand() -> void:
+	for card: Card in get_children():
+		card.disable()
 
 
 func _update_cards() -> void:
@@ -107,6 +118,8 @@ func _on_card_dragging_started(card: Card) -> void:
 	dragging_card = card
 	dragging_card_current_index = card.get_index()
 	card.reparent(get_tree().root)
+	disable_hand()
+	
 	var card_placeholder := CARD_PLACEHOLDER.instantiate()
 	card_placeholder.tree_exited.connect(_on_card_placeholder_deleted)
 	add_child(card_placeholder)
@@ -117,6 +130,7 @@ func _on_card_dragging_started(card: Card) -> void:
 func _on_card_released(_card: Card) -> void:
 	get_tree().get_first_node_in_group("card_placeholders").queue_free()
 	card_released = true
+	dragging_card.interactable = false
 
 
 func _on_card_placeholder_deleted() -> void:
@@ -124,7 +138,10 @@ func _on_card_placeholder_deleted() -> void:
 	move_child(dragging_card, dragging_card_current_index)
 	
 	var target_pos := Vector2(x_offset, _get_nth_card_y_position(dragging_card_current_index))
-	dragging_card.tween_to_position(target_pos, draw_anim_length)
-	
-	card_released = false
-	dragging_card = null
+	dragging_card.tween_to_position(target_pos, card_release_anim_length)
+	dragging_card.tween_position.finished.connect(
+		func():
+			enable_hand()
+			card_released = false
+			dragging_card = null
+	, CONNECT_ONE_SHOT)
