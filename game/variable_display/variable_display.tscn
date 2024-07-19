@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://djuh52s2c65dr"]
+[gd_scene load_steps=6 format=3 uid="uid://djuh52s2c65dr"]
 
 [ext_resource type="Script" path="res://game/variable_display/variable_display.gd" id="1_equip"]
 [ext_resource type="Resource" uid="uid://b6nkkr7qncps6" path="res://data/variables/var_b.tres" id="2_7fr0t"]
+[ext_resource type="Script" path="res://game/components/tween.gd" id="3_ndvkl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d6rkn"]
 font_size = 64
@@ -15,6 +16,7 @@ shadow_offset = Vector2(2, 2)
 [node name="VariableDisplay" type="VBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
+pivot_offset = Vector2(44, 58)
 theme_override_constants/separation = 0
 script = ExtResource("1_equip")
 variable = ExtResource("2_7fr0t")
@@ -32,3 +34,11 @@ text = "0"
 label_settings = SubResource("LabelSettings_nn54i")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Tween" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_ndvkl")
+target = NodePath("..")
+property = "scale"
+tween_type = 10
+tween_ease = 2
+length = 0.6
